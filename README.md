@@ -31,7 +31,7 @@ git clone git@github.com:jdasilvalima/moodMosaic.git
 
 **Checkout directory**
 ```sh
-cd moodMosaic/mosaicMaker
+cd moodMosaic
 ```
 
 **Install Dependencies**
