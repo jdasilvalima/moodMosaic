@@ -1,41 +1,26 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
 <template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
+  <h1>Mosaic Mood</h1>
+  <div>
+    <p>MoodMosaic create a visual representation of collective emotions through the fusion of randomly selected mood images 🎨. 
+      It is combining the different states of mind, from joy and satisfaction to frustration and concern, into a single composite image. 
+      In every sprint retrospective, each team member's can express their sentiments and reflections on the just-concluded sprint easily 
+      with MoodMosaic.
+    </p>
+    <button type="button">Generate an Image</button>
+  </div>
+  <div>
+    <div class="generated-image">Image</div>
+    <button type="button">Download</button>
   </div>
 </template>
 
+<script setup lang="ts">
+</script>
+
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+.generated-image {
+  background-color: rgb(225, 225, 225);
+  height: 20rem;
+  width: 50rem;
 }
 </style>
