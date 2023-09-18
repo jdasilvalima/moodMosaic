@@ -12,7 +12,9 @@
       </div>
     </div>
     <div class="image">
-      <div class="generated-image">Image</div>
+      <div class="generated-image">
+        <img src="@/assets/frame/frameNature.svg" alt="Mood Mosaic Frame" width="1000"/>
+      </div>
       <button type="button">Download</button>
     </div>
   </div>
@@ -22,35 +24,18 @@
 </script>
 
 <style scoped>
+.prensentation {
+  text-align: justify;
+}
+
 h1 {
   font-family: 'Gerlick', sans-serif;
   font-size: 7rem;
 }
 
-.container {  display: grid;
-  grid-template-columns: 1fr 1.1fr 0.9fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "Prensentation Prensentation Prensentation . ."
-    "Prensentation Prensentation Prensentation . ."
-    ". Image Image Image Image"
-    ". Image Image Image Image"
-    ". Image Image Image Image";
-}
-
-.prensentation { 
-  grid-area: Prensentation;
-  text-align: justify;
-}
-
-.image { 
-  grid-area: Image; 
-}
-
-
 .generated-image {
-  background-color: rgb(225, 225, 225);
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }
 </style>
