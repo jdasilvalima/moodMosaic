@@ -14,7 +14,7 @@
           <image id="calm" x="1194" y="150" width="100" height="100" :href="myCalmImage" />
           <image id="succeed" x="164" y="182" width="100" height="100" :href="mySucceedImage"/>
           <image id="work" x="854" y="406" width="100" height="100" :href="myTeamImage"/>
-          <image id="team" x="525" y="687" width="100" height="100" :href="myWorkImage"/>
+          <image id="team" x="525" y="687" width="100" height="100" xlink:href="https://github.com/jdasilvalima/moodMosaic/blob/main/img/work.png"/>
         </g>
       </g>
     </svg>
@@ -24,8 +24,8 @@
 <script setup lang="ts">
   import { ref }  from 'vue';
 
-  const myCalmImage = ref<string>("./img/calm.png");
-  const mySucceedImage = ref<string>("./img/succeed.png");
-  const myTeamImage = ref<string>("./img/team.png");
-  const myWorkImage = ref<string>("./img/work.png");
+  const myCalmImage = ref<string>("./src/assets/img/calm.png");
+  const mySucceedImage = ref<string>("./src/assets/img/succeed.png");
+  const myTeamImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/blob/main/img/team.png");
+  const myWorkImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/blob/main/img/work.png");
 </script>
