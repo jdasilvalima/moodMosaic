@@ -22,14 +22,6 @@
 
 <script setup lang="ts">
   import NatureFrame from "@/components/frame/NatureFrame.vue";
-  //https://dev.to/geowrgetudor/dealing-with-svg-icons-in-vue-vite-an9
-  
-  const images = [
-    { id: "calm", src: require("@/assets/img/calm.png"), x: 1194, y: 150, width: 100, height: 100 },
-    { id: "succeed", src: require("@/assets/img/succeed.png"), x: 164, y: 182, width: 100, height: 100 },
-    { id: "team", src: require("@/assets/img/team.png"), x: 525, y: 687, width: 100, height: 100 },
-    { id: "work", src: require("@/assets/img/work.png"), x: 854, y: 406, width: 100, height: 100 },
-  ]
 </script>
 
 <style scoped>
