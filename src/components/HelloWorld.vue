@@ -14,7 +14,7 @@
     </div>
     <div class="image">
       <div class="generated-image">
-        <component :is="selectedComponent" />
+        <component :is="selectedComponent" :images="selectedImages"/>
       </div>
       <button>Download</button>
     </div>
@@ -29,22 +29,31 @@
 
   const componentsList = [NatureFrame, NatureFrame1, NatureFrame2];
   const selectedComponent = ref();
+  let selectedImages = ref({ calm: "", succeed: "", team: "", work: ""})
 
   onBeforeMount(() => {
     createMoodMosaicImage();
   });
 
   function createMoodMosaicImage() {
-    //selectRandomImages();
+    selectRandomImages();
     selectRandomFrame();
   }
 
+  function getRandomIndex(lengthList: number) {
+    return Math.floor(Math.random() * lengthList);
+  }
+
   function selectRandomImages() {
-    // TODO
+    const baseUrl = "https://github.com/jdasilvalima/moodMosaic/raw/main/img/";
+    for (const param in selectedImages.value) {
+      const randomIndex = getRandomIndex(2);
+      selectedImages.value[param] = `${baseUrl}${param}/${randomIndex}.png`;
+    }
   };
 
   function selectRandomFrame() {
-    const randomIndex = Math.floor(Math.random() * componentsList.length);
+    const randomIndex = getRandomIndex(componentsList.length);
     selectedComponent.value = componentsList[randomIndex];
   };
 

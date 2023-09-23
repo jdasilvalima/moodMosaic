@@ -9,9 +9,9 @@
           <path id="Star 1" d="M454 663.69L469.463 713.626L469.572 713.978H469.94H520.044L479.489 744.896L479.211 745.108L479.315 745.441L494.793 795.426L454.303 764.559L454 764.328L453.697 764.559L413.207 795.426L428.685 745.441L428.789 745.108L428.511 744.896L387.956 713.978H438.06H438.428L438.537 713.626L454 663.69Z" stroke="black"/>
         </g>
         <g id="Images">
-          <image id="calm" x="1194" y="150" width="100" height="100" :href="myCalmImage" />
-          <image id="work" x="854" y="406" width="100" height="100" :href="myTeamImage"/>
-          <image id="team" x="525" y="687" width="100" height="100" :href="myWorkImage"/>
+          <image id="calm" x="1194" y="150" width="100" height="100" :href="images?.calm" />
+          <image id="work" x="854" y="406" width="100" height="100" :href="images?.team"/>
+          <image id="team" x="525" y="687" width="100" height="100" :href="images?.work"/>
         </g>
       </g>
     </svg>
@@ -19,10 +19,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref }  from 'vue';
-
-  const myCalmImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/calm/1.png");
-  const mySucceedImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/team.png");
-  const myTeamImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/team.png");
-  const myWorkImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/work.png");
+  defineProps({
+    images: Object,
+  })
 </script>

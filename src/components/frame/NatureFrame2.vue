@@ -10,9 +10,9 @@
           <path id="Ellipse 1" d="M1329.5 200.5C1329.5 245.21 1291.25 281.5 1244 281.5C1196.75 281.5 1158.5 245.21 1158.5 200.5C1158.5 155.79 1196.75 119.5 1244 119.5C1291.25 119.5 1329.5 155.79 1329.5 200.5Z" stroke="black"/>
         </g>
         <g id="Images">
-          <image id="calm" x="1194" y="150" width="100" height="100" :href="myCalmImage" />
-          <image id="succeed" x="164" y="182" width="100" height="100" :href="mySucceedImage"/>
-          <image id="work" x="854" y="406" width="100" height="100" :href="myTeamImage"/>
+          <image id="calm" x="1194" y="150" width="100" height="100" :href="images?.calm" />
+          <image id="succeed" x="164" y="182" width="100" height="100" :href="images?.succeed"/>
+          <image id="work" x="854" y="406" width="100" height="100" :href="images?.team"/>
         </g>
       </g>
     </svg>
@@ -20,10 +20,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref }  from 'vue';
-
-  const myCalmImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/calm/1.png");
-  const mySucceedImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/succeed/2.png");
-  const myTeamImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/work/1.png");
-  const myWorkImage = ref<string>("https://github.com/jdasilvalima/moodMosaic/raw/main/img/team/2.png");
+  defineProps({
+    images: Object,
+  })
 </script>
