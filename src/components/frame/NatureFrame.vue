@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="svgImage">
     <svg width="1512" height="982" viewBox="0 0 1512 982" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g>
         <rect width="1512" height="982" fill="white"/>
@@ -22,7 +22,16 @@
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue';
+
+  const svgImage = ref(null);
+
   defineProps({
     images: Object,
   })
+
+  defineExpose({
+    svgImage
+  })
+
 </script>

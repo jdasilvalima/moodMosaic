@@ -14,9 +14,9 @@
     </div>
     <div class="image">
       <div class="generated-image">
-        <component :is="selectedComponent" :images="selectedImages"/>
+        <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
       </div>
-      <button>Download</button>
+      <button @click="downloadImage()">Download</button>
     </div>
   </div>
 </template>
@@ -24,27 +24,28 @@
 <script setup lang="ts">
   import { ref, onBeforeMount } from 'vue';
   import NatureFrame from "@/components/frame/NatureFrame.vue";
-  import NatureFrame1 from "@/components/frame/NatureFrame3.vue";
   import NatureFrame2 from "@/components/frame/NatureFrame2.vue";
+  import NatureFrame3 from "@/components/frame/NatureFrame3.vue";
 
-  const componentsList = [NatureFrame, NatureFrame1, NatureFrame2];
+  const componentsList = [NatureFrame, NatureFrame2, NatureFrame3];
   const selectedComponent = ref();
-  let selectedImages = ref({ calm: "", succeed: "", team: "", work: ""})
+  let selectedImages = ref({ calm: "", succeed: "", team: "", work: ""});
+  const moodMosaicImage = ref(null);
 
   onBeforeMount(() => {
     createMoodMosaicImage();
   });
 
-  function createMoodMosaicImage() {
+  function createMoodMosaicImage(): void {
     selectRandomImages();
     selectRandomFrame();
   }
 
-  function getRandomIndex(lengthList: number) {
+  function getRandomIndex(lengthList: number): number {
     return Math.floor(Math.random() * lengthList);
   }
 
-  function selectRandomImages() {
+  function selectRandomImages(): void {
     const baseUrl = "https://github.com/jdasilvalima/moodMosaic/raw/main/img/";
     for (const param in selectedImages.value) {
       const randomIndex = getRandomIndex(2);
@@ -52,10 +53,22 @@
     }
   };
 
-  function selectRandomFrame() {
+  function selectRandomFrame(): void {
     const randomIndex = getRandomIndex(componentsList.length);
     selectedComponent.value = componentsList[randomIndex];
   };
+
+  function downloadImage() {
+    if (!moodMosaicImage.value) return;
+
+    const data: Node = moodMosaicImage.value?.svgImage;
+    const downloadLink = document.createElement('a');
+    downloadLink.href = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(data));
+    downloadLink.download = 'mon_svg.svg';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
 
 </script>
 
