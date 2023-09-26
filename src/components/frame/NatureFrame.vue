@@ -1,6 +1,6 @@
 <template>
-  <div ref="svgImage">
-    <svg width="1512" height="982" viewBox="0 0 1512 982" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div>
+    <svg ref="svgImage" width="1512" height="982" viewBox="0 0 1512 982" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g>
         <rect width="1512" height="982" fill="white"/>
         <g id="FrameNature">

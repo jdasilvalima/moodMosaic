@@ -16,9 +16,14 @@
       <div class="generated-image">
         <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
       </div>
-      <button @click="downloadImage()">Download</button>
+      <button @click="downloadPng()">Download</button>
     </div>
   </div>
+
+  <!-- TEST -->
+  <canvas id="canvas" width="800" height="400"></canvas>
+  <div id="png-container"></div>
+
 </template>
 
 <script setup lang="ts">
@@ -57,8 +62,55 @@
     const randomIndex = getRandomIndex(componentsList.length);
     selectedComponent.value = componentsList[randomIndex];
   };
+ 
+ // TODO : transform png image to a base 64 string
+ // href="data:image/png;base64,iVBO ...snip... gg=="
+  function downloadPng() {
+    const svgData = new XMLSerializer().serializeToString(moodMosaicImage.value?.svgImage!);
+    console.log("svgData ", svgData);
 
-  function downloadImage() {
+    const svgBlob = new Blob([svgData], { type: "image/svg+xml" });
+    console.log("svgBlob ", svgBlob);
+
+    const svgUrl = URL.createObjectURL(svgBlob);
+    console.log("svgUrl ", svgUrl);
+
+    const svgImage = new Image();
+    console.log("svgImage ", svgImage);
+
+    svgImage.addEventListener(
+      "load",
+      () => {
+        onLoadImage(svgImage);
+      },
+      false,
+    )
+
+    svgImage.src = svgUrl;
+  }
+
+  function onLoadImage(svgImage: HTMLImageElement) {
+    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    console.log("canvas ", canvas);
+    canvas.width = svgImage.width;
+    canvas.height = svgImage.height;
+
+    const canvasCtx = canvas.getContext("2d")!;
+    canvasCtx.drawImage(svgImage, 0, 0);
+    console.log("canvasCtx ", canvasCtx);
+
+    canvas.toBlob((blob) => {
+      console.log("blob ", blob);
+      const pngUrl = URL.createObjectURL(blob);
+      const downloadLink = document.createElement("a");
+      downloadLink.href = pngUrl;
+      downloadLink.download = "image.png";
+      downloadLink.click();
+      URL.revokeObjectURL(pngUrl);
+    }, "image/png");
+    }
+
+  function downloadSvg() {
     if (!moodMosaicImage.value) return;
 
     const data: Node = moodMosaicImage.value?.svgImage;
