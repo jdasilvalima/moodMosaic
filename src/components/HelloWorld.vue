@@ -32,10 +32,14 @@
   import NatureFrame2 from "@/components/frame/NatureFrame2.vue";
   import NatureFrame3 from "@/components/frame/NatureFrame3.vue";
 
+  import calm from "@/dataImg/calm.json";
+  import succeed from "@/dataImg/succeed.json";
+
   const componentsList = [NatureFrame, NatureFrame2, NatureFrame3];
   const selectedComponent = ref();
   let selectedImages = ref({ calm: "", succeed: "", team: "", work: ""});
   const moodMosaicImage = ref(null);
+  const jsonList = ref([calm, succeed]);
 
   onBeforeMount(() => {
     createMoodMosaicImage();
@@ -51,10 +55,10 @@
   }
 
   function selectRandomImages(): void {
-    const baseUrl = "https://github.com/jdasilvalima/moodMosaic/raw/main/img/";
     for (const param in selectedImages.value) {
       const randomIndex = getRandomIndex(2);
-      selectedImages.value[param] = `${baseUrl}${param}/${randomIndex}.png`;
+      // get selected json from jsonList with param
+      selectedImages.value[param] = calm[randomIndex].dataUrl;
     }
   };
 
@@ -63,8 +67,6 @@
     selectedComponent.value = componentsList[randomIndex];
   };
  
- // TODO : transform png image to a base 64 string
- // href="data:image/png;base64,iVBO ...snip... gg=="
   function downloadPng() {
     const svgData = new XMLSerializer().serializeToString(moodMosaicImage.value?.svgImage!);
     console.log("svgData ", svgData);
