@@ -20,9 +20,9 @@
     </div>
   </div>
 
-  <!-- TEST -->
+  <!-- TEST 
   <canvas id="canvas" width="800" height="400"></canvas>
-  <div id="png-container"></div>
+  <div id="png-container"></div>-->
 
 </template>
 
@@ -34,12 +34,20 @@
 
   import calm from "@/dataImg/calm.json";
   import succeed from "@/dataImg/succeed.json";
+  import team from "@/dataImg/team.json";
+  import work from "@/dataImg/work.json";
+
+  type Image = {
+    category: string;
+    name: string;
+    dataUrl: string;
+  };
 
   const componentsList = [NatureFrame, NatureFrame2, NatureFrame3];
   const selectedComponent = ref();
   let selectedImages = ref({ calm: "", succeed: "", team: "", work: ""});
   const moodMosaicImage = ref(null);
-  const jsonList = ref([calm, succeed]);
+  const jsonList = ref<Image[]>([...calm, ...succeed, ...team, ...work]);
 
   onBeforeMount(() => {
     createMoodMosaicImage();
@@ -57,8 +65,8 @@
   function selectRandomImages(): void {
     for (const param in selectedImages.value) {
       const randomIndex = getRandomIndex(2);
-      // get selected json from jsonList with param
-      selectedImages.value[param] = calm[randomIndex].dataUrl;
+      const selectedJson = jsonList.value.filter((json) => json.category === param);
+      selectedImages.value[param] = selectedJson[randomIndex]?.dataUrl;
     }
   };
 
@@ -69,16 +77,9 @@
  
   function downloadPng() {
     const svgData = new XMLSerializer().serializeToString(moodMosaicImage.value?.svgImage!);
-    console.log("svgData ", svgData);
-
     const svgBlob = new Blob([svgData], { type: "image/svg+xml" });
-    console.log("svgBlob ", svgBlob);
-
     const svgUrl = URL.createObjectURL(svgBlob);
-    console.log("svgUrl ", svgUrl);
-
     const svgImage = new Image();
-    console.log("svgImage ", svgImage);
 
     svgImage.addEventListener(
       "load",
@@ -92,17 +93,15 @@
   }
 
   function onLoadImage(svgImage: HTMLImageElement) {
-    const canvas = document.getElementById("canvas") as HTMLCanvasElement;
-    console.log("canvas ", canvas);
+    //const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+    const canvas = document.createElement('canvas');
     canvas.width = svgImage.width;
     canvas.height = svgImage.height;
 
     const canvasCtx = canvas.getContext("2d")!;
     canvasCtx.drawImage(svgImage, 0, 0);
-    console.log("canvasCtx ", canvasCtx);
 
     canvas.toBlob((blob) => {
-      console.log("blob ", blob);
       const pngUrl = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
       downloadLink.href = pngUrl;
@@ -110,7 +109,7 @@
       downloadLink.click();
       URL.revokeObjectURL(pngUrl);
     }, "image/png");
-    }
+  }
 
   function downloadSvg() {
     if (!moodMosaicImage.value) return;
