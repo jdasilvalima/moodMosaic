@@ -1,4 +1,5 @@
 <template>
+  <!-- Version Beta -->
   <div class="container">
     <div class="prensentation">
       <h1>Mosaic Mood</h1>
@@ -9,7 +10,6 @@
           with MoodMosaic.
         </p>
         <button @click="createMoodMosaicImage()">Generate an Image</button>
-        <p>{{ selectedComponent.__name }}</p>
       </div>
     </div>
     <div class="image">
@@ -19,11 +19,7 @@
       <button @click="downloadPng()">Download</button>
     </div>
   </div>
-
-  <!-- TEST 
-  <canvas id="canvas" width="800" height="400"></canvas>
-  <div id="png-container"></div>-->
-
+  <!-- Version Beta -->
 </template>
 
 <script setup lang="ts">
@@ -93,7 +89,6 @@
   }
 
   function onLoadImage(svgImage: HTMLImageElement) {
-    //const canvas = document.getElementById("canvas") as HTMLCanvasElement;
     const canvas = document.createElement('canvas');
     canvas.width = svgImage.width;
     canvas.height = svgImage.height;
