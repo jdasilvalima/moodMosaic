@@ -1,5 +1,16 @@
 <template>
-  <button @click="downloadPng()">Download PNG format</button>
+  <div class="download-container">
+    <div class="download-text">
+      <hr class="line">
+      <span>D O W N L O A D</span>
+      <hr class="line">
+    </div>
+    <div class="download-buttons">
+      <button class="round-button">JPEG</button>
+      <button @click="downloadPng()" class="round-button">PNG</button>
+      <button @click="downloadSvg()" class="round-button">SVG</button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -36,7 +47,7 @@
       const pngUrl = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
       downloadLink.href = pngUrl;
-      downloadLink.download = "image.png";
+      downloadLink.download = "moodMosaic.png";
       downloadLink.click();
       URL.revokeObjectURL(pngUrl);
     }, "image/png");
@@ -54,3 +65,52 @@
     document.body.removeChild(downloadLink);
   }
 </script>
+
+<style>
+  .download-container {
+    text-align: center;
+  }
+
+  .download-text {
+    display: flex;
+    align-items: center;
+    margin: 5rem 0;
+  }
+
+  .line {
+    flex-grow: 1;
+    height: 2px;
+    background-color: #333;
+    margin: 0 4rem;
+  }
+
+  .download-text span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .download-buttons {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10rem;
+  }
+
+  .round-button {
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 50%;
+    background-color: #00d5d9;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .round-button:hover {
+    background-color: #019a9d;
+  }
+</style>

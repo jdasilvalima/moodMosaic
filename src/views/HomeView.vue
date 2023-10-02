@@ -2,7 +2,7 @@
   <main>
     <div class="container">
       <div class="prensentation">
-        <h1>Mosaic Mood</h1>
+        <h1>Mood Mosaic</h1>
         <div>
           <p>MoodMosaic create a visual representation of collective emotions through the fusion of randomly selected mood images 🎨. 
             It is combining the different states of mind, from joy and satisfaction to frustration and concern, into a single composite image. 
@@ -12,6 +12,7 @@
           <GenerateImage @imageGenerated="onImageGenerated"/>
         </div>
       </div>
+
       <div class="image" v-if="isShowingImage">
         <div class="generated-image">
           <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
@@ -54,4 +55,5 @@
     justify-content: center;
     margin: 2rem 0;
   }
+
 </style>
