@@ -1,8 +1,16 @@
 <template>
   <main>
     <div class="container">
+      <DisplayImage class="displayImage"/>
+
+      <div class="image" v-if="isShowingImage">
+        <div class="generated-image">
+          <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
+        </div>
+        <DownloadImage :moodMosaicImage="moodMosaicImage" />
+      </div>
+
       <div class="prensentation">
-        <h1>Mood Mosaic</h1>
         <div>
           <p>MoodMosaic create a visual representation of collective emotions through the fusion of randomly selected mood images 🎨. 
             It is combining the different states of mind, from joy and satisfaction to frustration and concern, into a single composite image. 
@@ -12,13 +20,7 @@
           <GenerateImage @imageGenerated="onImageGenerated"/>
         </div>
       </div>
-
-      <div class="image" v-if="isShowingImage">
-        <div class="generated-image">
-          <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
-        </div>
-        <DownloadImage :moodMosaicImage="moodMosaicImage" />
-      </div>
+      
     </div>
   </main>
 </template>
@@ -27,6 +29,7 @@
   import { ref } from 'vue';
   import DownloadImage from "@/components/DownloadImage.vue";
   import GenerateImage from "@/components/GenerateImage.vue";
+  import DisplayImage from "@/components/DisplayImage.vue";
 
   const moodMosaicImage = ref(null);
   const isShowingImage = ref<boolean>(false);
@@ -43,11 +46,7 @@
 <style scoped>
   .prensentation {
     text-align: justify;
-  }
-
-  h1 {
-    font-family: 'Gerlick', sans-serif;
-    font-size: 7rem;
+    margin: 5rem 10rem 3rem 10rem;
   }
 
   .generated-image {
@@ -56,4 +55,10 @@
     margin: 2rem 0;
   }
 
+  .displayImage {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    width: 100%;
+  }
 </style>
