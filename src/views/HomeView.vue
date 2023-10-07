@@ -15,20 +15,20 @@
             on the character that best represents their mood during the last sprint. 
             Additionally, each team member can explain why they chose that character, what they liked during the sprint, and what they would like to see improved.
           </p>
-          <GenerateImage @imageGenerated="onImageGenerated"/>
         </div>
       </div>
 
-      <div class="displayImage">
-        <DisplayImage />
-      </div>
+      <GenerateImage @imageGenerated="onImageGenerated" class="displayImage">
+        <div v-if="!isShowingImage">
+          <QuestionMark/>
+        </div>
 
-      <div class="image" v-if="isShowingImage">
-        <div class="generated-image">
+        <div v-if="isShowingImage" class="displayImage-generated">
           <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
         </div>
-        <DownloadImage :moodMosaicImage="moodMosaicImage" />
-      </div>
+      </GenerateImage>
+
+      <DownloadImage :moodMosaicImage="moodMosaicImage" v-if="isShowingImage" class="displayDownloadButton"/>
       
     </div>
   </main>
@@ -38,7 +38,7 @@
   import { ref } from 'vue';
   import DownloadImage from "@/components/DownloadImage.vue";
   import GenerateImage from "@/components/GenerateImage.vue";
-  import DisplayImage from "@/components/DisplayImage.vue";
+  import QuestionMark from "@/components/QuestionMark.vue";
 
   const moodMosaicImage = ref(null);
   const isShowingImage = ref<boolean>(false);
@@ -62,32 +62,43 @@
 }
 
 .displayImage {
-  width: 100%;
+  cursor: pointer;
 }
 
 @media (min-width: 900px) {
   .container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     column-gap: 5px;
+    align-items: center;
   }
 
   .prensentation {
     grid-column-start: 1;
     grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 2;
   }
 
   .displayImage {
     grid-column-start: 6;
     grid-column-end: 13;
-    align-self: stretch;
-    justify-self: stretch;
+    grid-row-start: 1;
+    grid-row-end: 3;
   }
 
-  .displayImage > svg {
+  .displayImage > div > svg {
     width: 100%;
-    align-self: stretch;
-    justify-self: stretch;
+    display: flex;
+    margin-top: 3%;
+  }
+
+  .displayDownloadButton {
+    grid-column-start: 1;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 3;
   }
 }
 </style>

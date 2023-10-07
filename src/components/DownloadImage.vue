@@ -74,18 +74,18 @@
   .download-text {
     display: flex;
     align-items: center;
-    margin: 5rem 0;
+    margin: 1rem 0;
   }
 
   .line {
     flex-grow: 1;
     height: 2px;
     background-color: #333;
-    margin: 0 4rem;
+    margin: 0 1rem;
   }
 
   .download-text span {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     color: #333;
   }
@@ -93,19 +93,19 @@
   .download-buttons {
     display: flex;
     justify-content: center;
-    padding-bottom: 10rem;
+    padding-bottom: 3rem;
   }
 
   .round-button {
-    width: 100px;
-    height: 100px;
+    width: 5rem;
+    height: 5rem;
     border: none;
     border-radius: 50%;
     background-color: #00d5d9;
     color: #fff;
     font-size: 16px;
     font-weight: bold;
-    margin: 0 5rem;
+    margin: 0 2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
   }

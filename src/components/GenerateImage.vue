@@ -1,5 +1,7 @@
 <template>
-  <button @click="createMoodMosaicImage()">Generate an Image</button>
+  <div @click="createMoodMosaicImage()">
+    <slot/>
+  </div>
 </template>
 
 <script setup lang="ts">
