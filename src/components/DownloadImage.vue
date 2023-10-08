@@ -6,8 +6,8 @@
       <hr class="line">
     </div>
     <div class="download-buttons">
-      <button class="round-button">JPEG</button>
-      <button @click="downloadPng()" class="round-button">PNG</button>
+      <button @click="downloadImage('jpeg')" class="round-button">JPEG</button>
+      <button @click="downloadImage('png')" class="round-button">PNG</button>
       <button @click="downloadSvg()" class="round-button">SVG</button>
     </div>
   </div>
@@ -18,7 +18,7 @@
     moodMosaicImage: Object,
   })
 
-  function downloadPng() {
+  function downloadImage(format: string) : void {
     const svgData = new XMLSerializer().serializeToString(props.moodMosaicImage.svgImage!);
     const svgBlob = new Blob([svgData], { type: "image/svg+xml" });
     const svgUrl = URL.createObjectURL(svgBlob);
@@ -27,7 +27,7 @@
     svgImage.addEventListener(
       "load",
       () => {
-        onLoadImage(svgImage);
+        onLoadImage(svgImage, format);
       },
       false,
     )
@@ -35,7 +35,7 @@
     svgImage.src = svgUrl;
   }
 
-  function onLoadImage(svgImage: HTMLImageElement) {
+  function onLoadImage(svgImage: HTMLImageElement, format: string) : void {
     const canvas = document.createElement('canvas');
     canvas.width = svgImage.width;
     canvas.height = svgImage.height;
@@ -47,10 +47,10 @@
       const pngUrl = URL.createObjectURL(blob);
       const downloadLink = document.createElement("a");
       downloadLink.href = pngUrl;
-      downloadLink.download = "moodMosaic.png";
+      downloadLink.download = `moodMosaic.${format}`;
       downloadLink.click();
       URL.revokeObjectURL(pngUrl);
-    }, "image/png");
+    }, `image/${format}`);
   }
 
   function downloadSvg() {

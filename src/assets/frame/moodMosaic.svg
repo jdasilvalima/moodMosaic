@@ -1,9 +1,0 @@
-<svg width="820" height="820" viewBox="0 0 820 820" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="moodMosaic">
-<circle id="bigEllipse" cx="410" cy="410" r="407.5" fill="#EEFFFF" stroke="#00D5D9" stroke-width="5"/>
-<circle id="smallEllipse" cx="410" cy="410" r="357.5" fill="white" stroke="#00D5D9" stroke-width="5"/>
-<g id="surprise">
-<circle id="textGenerate" cx="410" cy="410" r="369.5" stroke="black"/>
-</g>
-</g>
-</svg>

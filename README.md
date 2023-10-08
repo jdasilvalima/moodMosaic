@@ -10,7 +10,9 @@
 
 ### Introduction
 
-MoodMosaic create a visual representation of collective emotions through the fusion of randomly selected mood images 🎨. It is combining the different states of mind, from joy and satisfaction to frustration and concern, into a single composite image. In every sprint retrospective, each team member's can express their sentiments and reflections on the just-concluded sprint easily with MoodMosaic.
+**MoodMosaic** - allows you to generate an image featuring multiple characters with different mood states 🎨. This image can be used during a retrospective meeting to capture everyone's thoughts on the past sprint while also identifying areas for improvement.
+
+**How to use it ?** You can either keep the digital image or print it out and ask each team member to place a marker on the character that best represents their mood during the last sprint. Additionally, each team member can explain why they chose that character, what they liked during the sprint, and what they would like to see improved.
 
 ### Processus
 
