@@ -23,12 +23,16 @@
           <QuestionMark/>
         </div>
 
-        <div v-if="isShowingImage" class="displayImage-generated">
-          <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
-        </div>
+        <Transition>
+          <div v-if="isShowingImage" class="displayImage-generated">
+            <component :is="selectedComponent" :images="selectedImages" ref="moodMosaicImage"/>
+          </div>
+        </Transition>
       </GenerateImage>
 
-      <DownloadImage :moodMosaicImage="moodMosaicImage" v-if="isShowingImage" class="displayDownloadButton"/>
+      <Transition>
+        <DownloadImage :moodMosaicImage="moodMosaicImage" v-if="isShowingImage" class="displayDownloadButton"/>
+      </Transition>
       
     </div>
   </main>
@@ -63,6 +67,16 @@
 
 .displayImage {
   cursor: pointer;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1.5s ease-in-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 
 @media (min-width: 900px) {
