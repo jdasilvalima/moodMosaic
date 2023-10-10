@@ -1,5 +1,5 @@
 <template>
-  <div @click="createMoodMosaicImage()">
+  <div @click="createMoodMosaicImage()" class="create-image-btn">
     <slot/>
   </div>
 </template>
