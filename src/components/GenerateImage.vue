@@ -23,9 +23,9 @@
   };
 
   const componentsList = [ NatureFrame, NatureFrame2, NatureFrame3 ];
-  const selectedComponent = ref();
+  const selectedComponent = ref(null);
   const jsonList = ref<Image[]>([ ...calm, ...succeed, ...team, ...work ]);
-  let selectedImages = ref({ calm: "", succeed: "", team: "", work: ""});
+  let selectedImages = ref({ calm: null, succeed: null, team: null, work: null});
 
   const emit = defineEmits(['imageGenerated']);
 
@@ -41,6 +41,11 @@
   function getRandomIndex(lengthList: number): number {
     return Math.floor(Math.random() * lengthList);
   }
+  
+  function selectRandomFrame(): void {
+    const randomIndex = getRandomIndex(componentsList.length);
+    selectedComponent.value = componentsList[randomIndex];
+  };
 
   function selectRandomImages(): void {
     for (const param in selectedImages.value) {
@@ -48,10 +53,5 @@
       const selectedJson = jsonList.value.filter((json) => json.category === param);
       selectedImages.value[param] = selectedJson[randomIndex]?.dataUrl;
     }
-  };
-
-  function selectRandomFrame(): void {
-    const randomIndex = getRandomIndex(componentsList.length);
-    selectedComponent.value = componentsList[randomIndex];
   };
 </script>
